@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification SocketIO and Silex</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Notification SocketIO and Silex</h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="buttons">
+                    <li><a href="#">Hello</a></li>
+                    <li><a href="#">Bye</a></li>
+                </ul>
+                
+                <div class="messages"></div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//localhost:8080/socket.io/socket.io.js"></script>
+    <<script>
+        var socket = io.connect('localhost:8080');
+        
+        socket.on('{{ user_id }}', function (data) {
+            console.log('Message from socket.io: ' + data);
+            
+            var $message = $('<div class="alert alert-success">' + data + '</div>');
+            $message.appendTo('.messages');
+            setTimeout(function () {
+                $message.fadeOut().remove();
+            }, 2000);
+        });
+        
+        $(function() {
+            $('.buttons a').on('click', function (e) {
+                e.preventDefault();
+                
+                var $this = $(this);
+                var user_id = '{{ user_id }}';
+                var message = $this.text();
+                
+                $.get('emit/' + user_id + '/' + message);
+            });
+        });
+    </script>
+</body>
+</html>

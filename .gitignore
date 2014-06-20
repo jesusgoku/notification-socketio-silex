@@ -1,0 +1,3 @@
+# Package managers
+vendor/*
+node_modules/*

@@ -1,0 +1,19 @@
+{
+  "name": "notification",
+  "version": "0.0.1",
+  "description": "Notification System With SocketIO and Silex",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket",
+    "silex"
+  ],
+  "author": "jesusgoku",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "socket.io": "~1.0.6",
+    "express": "~4.4.3"
+  }
+}
