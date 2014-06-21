@@ -1,3 +1,6 @@
 # Package managers
 vendor/*
 node_modules/*
+
+# IDE
+.idea/*
