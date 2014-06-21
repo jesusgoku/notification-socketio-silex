@@ -29,7 +29,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//localhost:8080/socket.io/socket.io.js"></script>
-    <<script>
+    <script>
         var socket = io.connect('localhost:8080');
         
         socket.on('{{ user_id }}', function (data) {
@@ -37,9 +37,8 @@
             
             var $message = $('<div class="alert alert-success">' + data + '</div>');
             $message.appendTo('.messages');
-            setTimeout(function () {
-                $message.fadeOut().remove();
-            }, 2000);
+
+            $message.fadeIn(300).delay(2000).slideUp(400);
         });
         
         $(function() {
