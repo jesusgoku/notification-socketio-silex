@@ -26,10 +26,11 @@ $app->get('/{user_id}', function (Application $app, $user_id) {
     );
 });
 
-$app->get('/emit/{user_id}/{message}', function (Application $app, $user_id, $message) {
+$app->get('/emit/{user_id}', function (Application $app, $user_id) {
     $client = new \GuzzleHttp\Client();
+    $message = $app['request']->query->get('message');
     
-    $response = $client->get('http://localhost:26300/emit/' . $user_id . '/' . $message);
+    $response = $client->get('http://localhost:26300/emit/' . $user_id . '?message=' . urlencode($message));
     
     return $app->json(array(
         'content' => (string) $response->getBody(),
